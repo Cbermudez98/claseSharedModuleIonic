@@ -1,20 +1,33 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<div>
+  <form [formGroup]="form" (ngSubmit)="doSave()">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-input formControlName="title" label="Title"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-textarea formControlName="description" label="Description"></ion-textarea>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button type="submit" [disabled]="form.invalid">Save</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</div>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-list>
+        @for (task of tasks; track $index) {
+          <app-card [title]="task.title" [description]="task.description"></app-card>
+        }
+      </ion-list>
+    </ion-row>
+  </ion-grid>
 </ion-content>
